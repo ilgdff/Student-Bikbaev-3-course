@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Задание 1</title>
+</head>
+<body>
+    <div id="main-element">
+        <span>{{ some_text | needTrim }}</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#main-element',
+            data: {
+                some_text: 'Пора бы в НИЖНИЙ реГИСТР'
+            },
+            filters: {
+                needTrim: function(value) {
+                    if (!value) return '';
+                    return value.toLowerCase();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

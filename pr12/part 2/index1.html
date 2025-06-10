@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Задание 1</title>
+    <style>
+    .nice-text {
+        color: red;
+        font-family: 'Times New Roman';
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div id="main-element">
+        <p :class="userClass">Обычный текст</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#main-element',
+            data: {
+                userClass: 'nice-text'
+            }
+        });
+    </script>
+</body>
+</html>
