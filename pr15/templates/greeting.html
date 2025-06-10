@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Приветствие{% endblock %}
+
+{% block content %}
+    {% if username %}
+        <h1>Привет, {{ username }}!</h1>
+    {% else %}
+        <h1>Добро пожаловать!</h1>
+    {% endif %}
+{% endblock %}

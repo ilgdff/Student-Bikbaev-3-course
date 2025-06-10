@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Таблица разработчиков{% endblock %}
+
+{% block content %}
+    <h1>Информация о разработчиках</h1>
+    <table border="1">
+        {% for row in developers %}
+            <tr>
+                {% for cell in row %}
+                    <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

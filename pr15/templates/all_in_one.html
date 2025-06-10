@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Все задания{% endblock %}
+
+{% block content %}
+    <!-- Задание 3 -->
+    <section>
+        <h2>Приветствие</h2>
+        {% if username %}
+            <p>Привет, {{ username }}!</p>
+        {% else %}
+            <p>Добро пожаловать!</p>
+        {% endif %}
+    </section>
+
+    <!-- Задание 4 -->
+    <section>
+        <h2>Список фруктов</h2>
+        <ol>
+            {% for fruit in fruits %}
+                <li>{{ fruit }}</li>
+            {% endfor %}
+        </ol>
+    </section>
+
+    <!-- Задание 5 -->
+    <section>
+        <h2>Таблица разработчиков</h2>
+        <table border="1">
+            {% for row in developers %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <!-- Задание 2 -->
+    <section>
+        <h2>Включенный шаблон</h2>
+        {% include "small_template.html" %}
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <p>&copy; 2023 Все задания в одном шаблоне</p>
+{% endblock %}
