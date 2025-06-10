@@ -1,0 +1,45 @@
+{% extends 'shop/base.html' %}
+{% load cart_extras %}
+{% block content %}
+<h1 class="text-white">Корзина</h1>
+{% if cart.cart %}
+<div class="table-responsive">
+<table class="table table-bordered align-middle bg-dark text-white border-secondary" style="background:#181818;">
+    <thead>
+        <tr>
+            <th style="background:#232323;">Фото</th>
+            <th style="background:#232323;">Товар</th>
+            <th style="background:#232323;">Цена</th>
+            <th style="background:#232323;">Количество</th>
+            <th style="background:#232323;">Сумма</th>
+            <th style="background:#232323;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+        <tr>
+            <td style="background:#232323; text-align:center; width:120px;">
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" class="img-fluid" style="max-height:80px; width:auto; object-fit:contain; background:#232323;" alt="{{ item.product.name }}">
+                {% endif %}
+            </td>
+            <td style="background:#232323;">{{ item.product.name }}</td>
+            <td style="background:#232323;">${{ item.price }}</td>
+            <td style="background:#232323;">{{ item.quantity }}</td>
+            <td style="background:#232323;">${{ item.quantity|multiply:item.price }}</td>
+            <td style="background:#232323;">
+                <form action="{% url 'cart_remove' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<p class="text-end text-white"><strong>Итого: ${{ cart.get_total_price }}</strong></p>
+{% else %}
+<p class="text-white">Ваша корзина пуста.</p>
+{% endif %}
+{% endblock %} 

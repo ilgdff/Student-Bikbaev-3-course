@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<h1 class="text-white">Товары</h1>
+<div class="mb-3">
+    <h5 class="text-white">Категории</h5>
+    <ul class="list-inline">
+        {% for category in categories %}
+            <li class="list-inline-item mb-2">
+                <a href="{% url 'product_list_by_category' category.slug %}" class="btn btn-outline-light">{{ category.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="row">
+    {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 bg-dark text-white border-secondary">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top img-fluid" style="max-height:260px; width:auto; object-fit:contain; background:#222;" alt="{{ product.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatechars:60 }}</p>
+                    <p class="card-text"><strong>${{ product.price }}</strong></p>
+                    <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-light">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %} 
